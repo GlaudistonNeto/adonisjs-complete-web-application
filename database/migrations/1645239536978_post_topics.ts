@@ -1,7 +1,7 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
 export default class Topics extends BaseSchema {
-  protected tableName = 'topics'
+  protected tableName = 'post_topics'
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {

@@ -1,5 +1,9 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, HasMany, hasMany, ManyToMany, manyToMany } from '@ioc:Adonis/Lucid/Orm'
+import Topic from './Topic'
+import Asset from './Asset'
+import PostSnapshot from './PostSnapshot'
+import User from './User'
 
 export default class Post extends BaseModel {
   @column({ isPrimary: true })
@@ -12,50 +16,74 @@ export default class Post extends BaseModel {
   public slug: string
 
   @column()
-  public pageTitle: string
+  public pageTitle: string | null
 
   @column()
-  public description: string
+  public description: string | null
 
   @column()
-  public metaDescription: string
+  public metaDescription: string | null
 
   @column()
-  public canonical: string
+  public canonical: string | null
 
   @column()
-  public nody: string
+  public nody: string | null
 
   @column()
-  public videoUrl: string
+  public bodyBlocks: object | string | null
 
   @column()
-  public isFeatured: boolean
+  public bodyTypeId: number
 
   @column()
-  public isPersonal: boolean
+  public videoUrl: string | null
 
   @column()
-  public viewContent: number
+  public isFeatured: boolean | null
 
   @column()
-  public viewContentUnique: number
+  public isPersonal: boolean | null
+
+  @column()
+  public viewContent: number | null
+
+  @column()
+  public viewContentUnique: number | null
 
   @column()
   public stateId: number
 
   @column()
-  public timezone: string
+  public timezone: string | null
 
   @column()
-  public publishAtUser: string
+  public publishAtUser: string | null
 
   @column.dateTime()
-  public publishAt: DateTime
+  public publishAt: DateTime | null
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @manyToMany(() => Topic, {
+    pivotTable: 'post_topics',
+    pivotColumns: ['sort_order'],
+  })
+  public posts: ManyToMany<typeof Topic>
+
+  @manyToMany(() => Asset, {
+    pivotTable: 'asset_post',
+    pivotColumns: ['sort_order'],
+  })
+  public assets: ManyToMany<typeof Asset>
+
+  @hasMany(() => PostSnapshot)
+  public snapshots: HasMany<typeof PostSnapshot>
+
+  @manyToMany(() => User)
+  public authors: ManyToMany<typeof User>
 }
