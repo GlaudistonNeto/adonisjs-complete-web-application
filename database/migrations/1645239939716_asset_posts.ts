@@ -3,9 +3,12 @@ import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 export default class AssetPosts extends BaseSchema {
   protected tableName = 'asset_posts'
 
-  public async up () {
+  public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
+      table.integer('post_id').unsigned().references('id').inTable('posts').notNullable()
+      table.integer('asset_id').unsigned().references('id').inTable('assets').notNullable()
+      table.integer('sort_order').notNullable()
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
@@ -15,7 +18,7 @@ export default class AssetPosts extends BaseSchema {
     })
   }
 
-  public async down () {
+  public async down() {
     this.schema.dropTable(this.tableName)
   }
 }

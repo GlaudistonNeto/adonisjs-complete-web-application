@@ -3,9 +3,12 @@ import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 export default class AuthorPosts extends BaseSchema {
   protected tableName = 'author_posts'
 
-  public async up () {
+  public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
+      table.integer('post_id').unsigned().references('id').inTable('posts').notNullable()
+      table.integer('user_id').unsigned().references('id').inTable('users').notNullable()
+      table.integer('author_type_id').unsigned().defaultTo(1)
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
@@ -15,7 +18,7 @@ export default class AuthorPosts extends BaseSchema {
     })
   }
 
-  public async down () {
+  public async down() {
     this.schema.dropTable(this.tableName)
   }
 }
