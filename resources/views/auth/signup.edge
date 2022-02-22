@@ -1,0 +1,26 @@
+@layout('layouts/auth')
+
+@section('content')
+  <form action="{{ route('auth.signup') }}" method="POST">
+    @!component('components/input', {
+      name: 'username',
+      placeholder: 'Enter username',
+      errors: flashMessages.get('errors.username')
+    })
+
+    @!component('components/input', {
+      type: 'email',
+      name: 'email',
+      placeholder: 'Enter email',
+      errors: flashMessages.get('errors.email')
+    })
+
+    @!component('components/input', {
+      type: 'password',
+      name: 'password',
+      placeholder: 'Enter password',
+      errors: flashMessages.get('errors.password')
+    })
+    <button type="submit">Sign Up</button>
+  </form>
+@endsection

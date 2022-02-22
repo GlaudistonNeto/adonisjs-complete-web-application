@@ -1,0 +1,9 @@
+<div>
+  <input type="{{ type ?? 'text' }}" name="{{ name }}" placeholder="{{ placeholder }}">
+  @if (errors)
+  <small>{{ errors.join(', ') }}</small>
+  @endif
+  @if (flashMessages.has('errors.username'))
+
+  @endif
+</div>
