@@ -27,3 +27,6 @@ Route.get('/', async ({ view }) => {
 
 Route.get('/signup', 'AuthController.signupShow').as('auth.signup.show')
 Route.post('/signup', 'AuthController.signup').as('auth.signup')
+Route.get('/signin', 'AuthController.signinShow').as('auth.signin.show')
+Route.post('/signin', 'AuthController.signin').as('auth.signin')
+Route.get('/signout', 'AuthController.signout').as('auth.signout')

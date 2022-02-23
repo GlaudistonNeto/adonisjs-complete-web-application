@@ -1,6 +1,10 @@
 @layout('layouts/auth')
 
 @section('content')
+<h1 class="text-2xl font-semibold">Create Your Free Account</h1>
+<p>
+  Already have an Account? <a href="{{ route('auth.signin') }}">Sign In</a>.
+</p>
   <form action="{{ route('auth.signup') }}" method="POST">
     @!component('components/input', {
       name: 'username',

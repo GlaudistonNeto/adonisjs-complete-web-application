@@ -26,4 +26,33 @@ export default class AuthController {
 
     return response.redirect('/')
   }
+
+  public async signinShow({ view }: HttpContextContract) {
+    return view.render('auth/signin')
+  }
+
+  public async signin({ request, response, auth, session }: HttpContextContract) {
+    const { email, password } = request.only(['email', 'password'])
+
+    try {
+      await auth.attempt(email, password)
+    } catch (error) {
+      session.flash('errors', { form: 'The provided email or password is incorrect' })
+      return response.redirect().back()
+    }
+
+    await auth.attempt(email, password)
+
+    session.flash('success', 'Welcome back!')
+
+    return response.redirect('/')
+  }
+
+  public async signout({ response, auth, session }: HttpContextContract) {
+    await auth.logout()
+
+    session.flash('success', 'You have been logged out')
+
+    return response.redirect('/')
+  }
 }
