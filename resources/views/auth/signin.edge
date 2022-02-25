@@ -13,17 +13,23 @@
     @endif
 
     @!component('components/input', {
-      type: 'email',
+      label: 'Username / Email',
+      type: 'text',
       name: 'email',
-      placeholder: 'Enter email',
-      errors: flashMessages.get('errors.email')
+      placeholder: 'Enter email or username',
+      value: flashMessages.get('email') ?? '',
+      autocomplete: 'email',
+      required: true
     })
 
     @!component('components/input', {
+      label: 'Password',
       type: 'password',
       name: 'password',
       placeholder: 'Enter password',
-      errors: flashMessages.get('errors.password')
+      value: '',
+      autocomplete: 'new-password',
+      required: true
     })
     <button type="submit">Sign In</button>
   </form>
