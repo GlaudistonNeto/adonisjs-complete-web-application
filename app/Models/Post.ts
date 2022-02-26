@@ -4,6 +4,7 @@ import Topic from './Topic'
 import Asset from './Asset'
 import PostSnapshot from './PostSnapshot'
 import User from './User'
+import { slugify } from '@ioc:Adonis/Addons/LucidSlugify'
 
 export default class Post extends BaseModel {
   @column({ isPrimary: true })
@@ -13,6 +14,10 @@ export default class Post extends BaseModel {
   public title: string
 
   @column()
+  @slugify({
+    strategy: 'dbIncrement',
+    fields: ['title'],
+  })
   public slug: string
 
   @column()

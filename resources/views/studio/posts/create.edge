@@ -4,6 +4,16 @@
   <h1>Create new Post</h1>
 
   <form method="POST" action="{{ route('studio.posts.store') }}">
+    <input type="hidden" value="{{ csrfToken }}" name="_token">
 
+    @!component('components/input', {
+      label: 'Title',
+      name: 'title',
+      value: flashMessages.get('title') ?? '',
+      errors: flashMessages.get('errors.title'),
+      required: true,
+    })
+
+    <button type="submit">Save Post</button>
   </form>
 @endsection
