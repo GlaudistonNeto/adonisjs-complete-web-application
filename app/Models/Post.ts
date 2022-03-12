@@ -33,7 +33,7 @@ export default class Post extends BaseModel {
   public canonical: string | null
 
   @column()
-  public nody: string | null
+  public body: string | null
 
   @column()
   public bodyBlocks: object | string | null

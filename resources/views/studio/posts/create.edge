@@ -1,19 +1,84 @@
 @layout('layouts/studio')
 
 @section('content')
-  <h1>Create new Post</h1>
+<h1>Create new Post</h1>
 
   <form method="POST" action="{{ route('studio.posts.store') }}">
     <input type="hidden" value="{{ csrfToken }}" name="_token">
 
-    @!component('components/input', {
-      label: 'Title',
-      name: 'title',
-      value: flashMessages.get('title') ?? '',
-      errors: flashMessages.get('errors.title'),
-      required: true,
-    })
+    <div class="flex flex-wrap -mx-3">
+      <div class="w-full lg:w-2/3 lg:px-3">
+        @!component('components/input', {
+          label: 'Title',
+          name: 'title',
+          value: flashMessages.get('title') ?? '',
+          errors: flashMessages.get('errors.title'),
+          required: true,
+        })
 
+        @!component('components/input', {
+          label: 'Slug',
+          name: 'slug',
+          value: flashMessages.get('slug') ?? '',
+          errors: flashMessages.get('errors.slug'),
+        })
+
+        @!component('components/input', {
+          type: 'textarea',
+          label: 'Description',
+          name: 'description',
+          value: flashMessages.get('description') ?? '',
+          errors: flashMessages.get('errors.description'),
+          rows: 3,
+        })
+
+        <details class="wb-6">
+          <summary>Search Engine Optimization (SEO)</summary>
+          @!component('components/input', {
+            label: 'Page Title',
+            name: 'pageTitle',
+            value: flashMessages.get('pageTitle') ?? '',
+            errors: flashMessages.get('errors.pageTitle'),
+          })
+
+          @!component('components/input', {
+            type: 'textarea',
+            label: 'Meta Description',
+            name: 'metaDescriptio',
+            value: flashMessages.get('metaDescriptio') ?? '',
+            errors: flashMessages.get('errors.metaDescriptio'),
+            rows: 3,
+          })
+
+          @!component('components/input', {
+            label: 'Canonical',
+            name: 'canonical',
+            value: flashMessages.get('canonical') ?? '',
+            errors: flashMessages.get('errors.canonical'),
+          })
+
+        </details>
+
+        @!component('components/input', {
+          type: 'textarea',
+          label: 'Body',
+          name: 'body',
+          value: flashMessages.get('body') ?? '',
+          errors: flashMessages.get('errors.body'),
+          rows: 3,
+        })
+      </div>
+
+      <div class="w-full lg:-1/3 lg:px-3">
+        @!component('components/input', {
+          label: 'Video Url',
+          name: 'videoUrl',
+          value: flashMessages.get('videoUrl') ?? '',
+          errors: flashMessages.get('errors.videoUrl'),
+        })
+      </div>
+    </div>
+        
     <button type="submit">Save Post</button>
   </form>
 @endsection
