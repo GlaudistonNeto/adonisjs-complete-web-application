@@ -32,7 +32,7 @@ Route.get('/signout', 'AuthController.signout').as('auth.signout')
 
 Route.group(() => {
   Route.group(() => {
-    Route.get('/', 'PostsController.index').as('index')
+    Route.get('/:page?', 'PostsController.index').as('index').where('page', Route.matchers.number())
     Route.get('/create', 'PostsController.create').as('create')
     Route.post('/', 'PostsController.store').as('store')
   })
