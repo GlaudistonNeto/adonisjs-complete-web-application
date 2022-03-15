@@ -6,7 +6,7 @@ import PostStoreValidator from 'App/Validators/PostStoreValidator'
 export default class PostsController {
   public async index({ view, auth, params }: HttpContextContract) {
     const page = params.page ?? 1
-    const posts = auth.user!.related('posts').query().paginate(page, 20)
+    const posts = await auth.user!.related('posts').query().paginate(page, 20)
     return view.render('studio/posts/index', { posts })
   }
 

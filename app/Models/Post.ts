@@ -81,7 +81,7 @@ export default class Post extends BaseModel {
   public posts: ManyToMany<typeof Topic>
 
   @manyToMany(() => Asset, {
-    pivotTable: 'asset_post',
+    pivotTable: 'asset_posts',
     pivotColumns: ['sort_order'],
   })
   public assets: ManyToMany<typeof Asset>
