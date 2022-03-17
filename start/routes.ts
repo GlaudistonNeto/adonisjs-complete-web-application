@@ -23,22 +23,3 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.get('/', async ({ view }) => {
   return view.render('welcome')
 })
-
-Route.get('/signup', 'AuthController.signupShow').as('auth.signup.show')
-Route.post('/signup', 'AuthController.signup').as('auth.signup')
-Route.get('/signin', 'AuthController.signinShow').as('auth.signin.show')
-Route.post('/signin', 'AuthController.signin').as('auth.signin')
-Route.get('/signout', 'AuthController.signout').as('auth.signout')
-
-Route.group(() => {
-  Route.group(() => {
-    Route.get('/:page?', 'PostsController.index').as('index').where('page', Route.matchers.number())
-    Route.get('/create', 'PostsController.create').as('create')
-    Route.post('/', 'PostsController.store').as('store')
-  })
-    .prefix('/posts')
-    .as('posts')
-})
-  .namespace('App/Controllers/Http/Studio')
-  .prefix('studio')
-  .as('studio')
