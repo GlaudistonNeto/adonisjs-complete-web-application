@@ -23,3 +23,18 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.get('/', async ({ view }) => {
   return view.render('welcome')
 })
+
+// Route.post()
+// Route.put()
+// Route.patch()
+// Route.delete()
+
+
+Route.get('/about/:name?', async ({ params }) => {
+  return params.name ? `About ${params.name}'s Page`
+        : 'About Page'
+})
+
+Route.get('/contact', async () => {
+  return 'Contact Page!'
+})
