@@ -10,5 +10,13 @@
 <body>
   <a href="{{ route('about') }}">ABOUT</a>
   <a href="{{ route('contact') }}">CONTACT</a>
+
+  @set('name', 'Chimpanzie Eny')
+
+  <p>{{ name }}</p>
+  <p>@{{ name }}</p> {{--  ignored by edge  --}}
+  {{ '<p>This one will be the escaped</p>' }}
+
+  {{{ '<p>This one will not be the escaped</p>' }}}
 </body>
 </html>
