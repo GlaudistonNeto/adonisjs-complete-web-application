@@ -28,6 +28,6 @@ Route.get('/', 'PagesController.home')
 // Route.delete()
 
 
-Route.get('/about-us', 'PagesController.about').as('about')
+Route.get('/about/:name?', 'PagesController.about').as('about')
 
-Route.get('/contact-us', 'PagesController.contact').as('contact')
+Route.get('/contact', 'PagesController.contact').as('contact')
