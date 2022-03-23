@@ -11,14 +11,21 @@
                             <input
                                 type="text"
                                 name="title"
-                                class="input"
+                                class="input {{ flashMessages.has('errors.title') ? 'is-danger' : '' }}"
                                 placeholder="What needs to be done?"
+                                value="{{ flashMessages.get('title') || '' }}"
                             >
                         </div>
                         <div class="control">
                             <button class="button is-link" type="submit">+Add+</button>
                         </div>
                     </div>
+
+                    @if (flashMessages.has('errors.title'))
+                        <p class="help is-danger">
+                            {{ flashMessages.get('errors.title') }}
+                        </p>
+                    @endif
                 </form>
             </div>
         </div>
