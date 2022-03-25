@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AdonisJS - A fully featured web framework for Node.js</title>
-  @entryPointStyles('app')
-  @entryPointScripts('app')
+  <title>AdonisJS - A Modern Web Framework For Node.js</title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <a href="{{ route('about') }}">ABOUT</a>
-  <a href="{{ route('contact') }}">CONTACT</a>
+  <a href="{{ route('about') }}">About</a>
+  <a href="{{ route('contact') }}">Contact</a>
 
-  @set('name', 'Chimpanzie Eny')
+  @set('name', 'Chimezie Enyinnaya')
 
   <p>{{ name }}</p>
-  <p>@{{ name }}</p> {{--  ignored by edge  --}}
-  {{ '<p>This one will be escaped</p>' }}
 
-  {{{ '<p>This one will not be escaped</p>' }}}
+  <p>@{{ name }}</p>
+
+  {{ '<p>This will be escaped</p>' }}
+
+  {{{ '<p>This will not be escaped</p>' }}}
 </body>
 </html>
